@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NeohConcessionaria.Application\NeohConcessionaria.Application.csproj" />
+    <ProjectReference Include="..\NeohConcessionaria.Core\NeohConcessionaria.Core.csproj" />
+    <ProjectReference Include="..\NeohConcessionaria.Infra\NeohConcessionaria.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
