@@ -12,6 +12,21 @@ namespace NeohConcessionaria.Infra.Persistence
     {
         public AppDbContext(DbContextOptions<AppDbContext> opts) : base(opts) { }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Veiculo>(e =>
+            {
+                e.HasKey(v => v.VeiculoId);
+
+                e.HasOne(v => v.Fabricante)
+                .WithMany(f => f.Veiculos)
+                .HasForeignKey(v => v.FabricanteId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
+
         public DbSet<Fabricante> Fabricantes { get; set; }
+        public DbSet<Veiculo> Veiculos { get; set; }
+
     }
 }

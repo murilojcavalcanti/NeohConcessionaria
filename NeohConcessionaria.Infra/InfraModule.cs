@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NeohConcessionaria.Infra.Persistence;
 using NeohConcessionaria.Infra.Repositories;
+using NeohConcessionaria.Infra.Repositories.Veiculos;
 using NeohConcessionaria.Infrastructure.Repositories;
 using NeohConcessionaria.Infrastructure.Repositories.Fabricantes;
 
@@ -28,6 +29,7 @@ namespace NeohConcessionaria.Infrastructure
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
+            services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             return services;
         }
     }

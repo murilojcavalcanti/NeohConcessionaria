@@ -26,5 +26,7 @@ namespace NeohConcessionaria.Core.Entities
         [MaxLength(255, ErrorMessage = "Numero de caracteres inválido: maximo 255")]
         [Url(ErrorMessage ="Insira uma url valida")]
         public string Website { get; set; }
+
+        public List<Veiculo> Veiculos { get; set; }
     }
 }

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeohConcessionaria.Core.Enum
+namespace NeohConcessionaria.Core.Entities
 {
-    public enum EnumTipoVeiculo
+    public class FabricanteVeiculo
     {
-        Carro = 1,
-        Moto = 2,
-        Caminhão = 3
     }
 }

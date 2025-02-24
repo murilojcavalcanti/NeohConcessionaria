@@ -1,0 +1,22 @@
+﻿@model Veiculo
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Fabricante.Nome : @Model.Modelo</h5>
+        <p class="card-text">Fabricado em: @Model.AnoFabricacao</p>
+        <p class="card-text">Valor: @Model.Preco.ToString("C2")</p>
+        <p class="card-text">Valor: @Model.Descricao</p>
+        <div class="btn-group">
+            <a asp-controller="" asp-action="" class=" btn btn-primary ">Vender Veiculo</a>
+
+            &nbsp;&nbsp;&nbsp;
+            <a onclick="confirmDelete(@Model.VeiculoId)" class=" btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete(VeiculoId) {
+        if (confirm("Tem certeza que deseja excluir este Veiculo?")) {
+            window.location.href = `/Veiculo/Delete?VeiculoId=${VeiculoId}`;
+        }
+    }
+</script>

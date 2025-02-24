@@ -1,0 +1,16 @@
+﻿<div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" role="button"
+       id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Veiculos
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a class="dropdown-item" asp-controller="Veiculo" asp-action="Create" style="color:black">Inserir Veiculo</a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" asp-controller="Veiculo" asp-action="List" asp-route-categoria=""
+               style="color:black">Todos os Veiculos</a>
+        </li>
+    </ul>
+</div>
