@@ -1,15 +1,10 @@
 ﻿using NeohConcessionaria.Core.Enum;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NeohConcessionaria.Core.Entities
 {
-    public class Veiculo
+    public class Veiculo:BaseEntity
     {
         public int VeiculoId { get; set; }
 
@@ -33,5 +28,6 @@ namespace NeohConcessionaria.Core.Entities
         public EnumTipoVeiculo TipoVeiculo { get; set; }
 
         public string? Descricao { get; set; }
+
     }
 }

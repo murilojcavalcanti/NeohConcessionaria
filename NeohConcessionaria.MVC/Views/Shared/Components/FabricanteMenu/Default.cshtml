@@ -1,0 +1,17 @@
+﻿<div class="dropdown">
+
+    <a class="btn btn-secondary dropdown-toggle" role="button"
+       id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Fabricantes
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+            <a class="dropdown-item" asp-controller="Fabricante" asp-action="Create" style="color:black">Inserir Fabricante</a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item" asp-controller="Fabricante" asp-action="List" asp-route-categoria=""
+               style="color:black">Todos os Fabricantes</a>
+        </li>
+    </ul>
+</div>

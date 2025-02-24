@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NeohConcessionaria.Core.Entities
 {
-    public class Cliente
+    public class Cliente:BaseEntity
     {
         public int ClienteId { get; set; }
 

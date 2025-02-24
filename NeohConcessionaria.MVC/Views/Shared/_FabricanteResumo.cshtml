@@ -1,0 +1,21 @@
+﻿@model Fabricante
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Nome</h5>
+        <p class="card-text">Criada em: @Model.PaisOrigem</p>
+        <p class="card-text">Fundada em: @Model.AnoFundacao</p>
+        <div class="btn-group">
+                <a href="@Model.Website" class=" btn btn-primary ">Acesse o site</a>
+            
+            &nbsp;&nbsp;&nbsp;
+            <a onclick="confirmDelete(@Model.FabricanteId)" class=" btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete(fabricanteId) {
+        if (confirm("Tem certeza que deseja excluir este fabricante?")) {
+            window.location.href = `/Fabricante/Delete?FabricanteId=${fabricanteId}`;
+        }
+    }
+</script>

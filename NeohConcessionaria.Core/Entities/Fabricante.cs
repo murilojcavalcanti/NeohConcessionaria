@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NeohConcessionaria.Core.Entities
 {
-    public class Fabricante
+    public class Fabricante:BaseEntity
     {
         public int FabricanteId { get; set; }
         [Required(ErrorMessage ="Campo Obrigatório")]
@@ -23,7 +23,7 @@ namespace NeohConcessionaria.Core.Entities
         public int AnoFundacao { get; set; }
 
         [Required(ErrorMessage ="Campo Obrigatório")]
-        [Range(10,255, ErrorMessage = "Numero de caracteres inválido: minimo 10, maximo 255")]
+        [MaxLength(255, ErrorMessage = "Numero de caracteres inválido: maximo 255")]
         [Url(ErrorMessage ="Insira uma url valida")]
         public string Website { get; set; }
     }

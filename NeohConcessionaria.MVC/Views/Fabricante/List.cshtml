@@ -1,0 +1,37 @@
+﻿@model FabricanteViewModel
+@if (TempData["MessagemSucesso"]!=null){
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black;">
+        Ação concluida com sucesso
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color: black;">
+        Erro ao realizar ação
+    </div>
+}
+<div>
+    <h2>
+        Fabricantes
+    </h2>
+    <hr />
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var fabricante in Model.Fabricantes)
+        {
+            <partial name="_FabricanteResumo" for="@fabricante" />
+        }
+    </div>
+</div>
+
+<script>
+    setTimeout(function () {
+        let alert = document.querySelector(".alert");
+        if (alert) {
+            let bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }
+    }, 5000); 
+</script>

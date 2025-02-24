@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NeohConcessionaria.Core\NeohConcessionaria.Core.csproj" />
-    <ProjectReference Include="..\NeohConcessionaria.Infra\NeohConcessionaria.Infra.csproj" />
-  </ItemGroup>
-
 </Project>
