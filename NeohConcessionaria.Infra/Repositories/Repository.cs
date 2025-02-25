@@ -33,16 +33,6 @@ namespace NeohConcessionaria.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<T> Get(Expression<Func<T, bool>> predicate)
-        {
-            return await _context.Set<T>().Where(e => e.IsDeleted == false).SingleOrDefaultAsync (predicate) ;
-        }
-
-        public  async Task<List<T>> GetAll()
-        {
-            return await _context.Set<T>().Where(e => e.IsDeleted == false).ToListAsync();
-        }
-
         public void Update(T Entity)
         {
 

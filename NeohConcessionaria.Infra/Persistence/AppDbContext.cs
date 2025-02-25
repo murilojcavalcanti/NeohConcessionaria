@@ -27,6 +27,7 @@ namespace NeohConcessionaria.Infra.Persistence
 
         public DbSet<Fabricante> Fabricantes { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Concessionaria> Concessionarias { get; set; }
 
     }
 }

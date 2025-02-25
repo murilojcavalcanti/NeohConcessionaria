@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NeohConcessionaria.Core.Entities
 {
-    public class Vendas:BaseEntity
+    public class Venda:BaseEntity
     {
         public  int VendaId { get; set; }
         
