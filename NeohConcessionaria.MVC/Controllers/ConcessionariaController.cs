@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NeohConcessionaria.Application.Services.ConcessionariaService;
 using NeohConcessionaria.Core.Entities;
 using NeohConcessionaria.Infra.Repositories.Concessionarias;
 using NeohConcessionaria.MVC.Models.ConcessionariaModels;
@@ -8,10 +9,11 @@ namespace NeohConcessionaria.MVC.Controllers
     public class ConcessionariaController : Controller
     {
         private readonly IConcessionariaRepository _ConcessionariaRepository;
-
-        public ConcessionariaController(IConcessionariaRepository ConcessionariaRepository)
+        private readonly IConcessionariaService _ConcessionariaService;
+        public ConcessionariaController(IConcessionariaRepository ConcessionariaRepository, IConcessionariaService concessionariaService)
         {
             _ConcessionariaRepository = ConcessionariaRepository;
+            _ConcessionariaService = concessionariaService;
         }
         public IActionResult Create()
         {
@@ -23,7 +25,7 @@ namespace NeohConcessionaria.MVC.Controllers
             
             try
             {
-                await _ConcessionariaRepository.Create(Concessionaria);
+                await _ConcessionariaService.Create(Concessionaria);
                 TempData["MessagemSucesso"] = "Concessionaria Criado Com sucesso!";
                 return RedirectToAction("List");
             }
@@ -37,7 +39,7 @@ namespace NeohConcessionaria.MVC.Controllers
         }
         public async Task<IActionResult> List()
         {
-            List<Concessionaria> Concessionarias = await _ConcessionariaRepository.GetAll();
+            List<Concessionaria> Concessionarias = await _ConcessionariaService.List();
             ConcessionariaViewModel ConcessionariaVm = new()
             {
                 Concessionarias = Concessionarias
@@ -46,14 +48,14 @@ namespace NeohConcessionaria.MVC.Controllers
         }
         public async Task<IActionResult> Details(int ConcessionariaId)
         {
-            Concessionaria concessionaria = await _ConcessionariaRepository.Get(c => c.ConcessionariaId == ConcessionariaId);
+            Concessionaria concessionaria = await _ConcessionariaService.Details(ConcessionariaId);
 
             return View(concessionaria);
         }
 
         public async Task<IActionResult> Update(int ConcessionariaId)
         {
-            Concessionaria Concessionaria = await _ConcessionariaRepository.Get(f => f.ConcessionariaId == ConcessionariaId);
+            Concessionaria Concessionaria = await _ConcessionariaService.Details(ConcessionariaId);
             return View(Concessionaria);
         }
         [HttpPost]
@@ -62,7 +64,7 @@ namespace NeohConcessionaria.MVC.Controllers
 
             try
             {
-                _ConcessionariaRepository.Update(Concessionaria);
+                _ConcessionariaService.Update(Concessionaria);
                 TempData["MessagemSucesso"] = "Concessionaria atualizado Com sucesso!";
                 return RedirectToAction("List");
             }
@@ -78,8 +80,7 @@ namespace NeohConcessionaria.MVC.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int ConcessionariaId)
         {
-            Concessionaria Concessionaria = await _ConcessionariaRepository.Get(f => f.ConcessionariaId == ConcessionariaId);
-            _ConcessionariaRepository.Delete(Concessionaria);
+            _ConcessionariaService.Delete(ConcessionariaId);
             TempData["MessagemSucesso"] = "Concessionaria Excluido Com sucesso!";
             return RedirectToAction(nameof(List));
         }
