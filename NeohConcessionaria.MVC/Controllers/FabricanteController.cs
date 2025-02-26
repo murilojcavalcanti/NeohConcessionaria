@@ -25,10 +25,7 @@ namespace NeohConcessionaria.MVC.Controllers
                 ModelState.AddModelError("AnoFundacao", "O Ano de Fundação não pode ser maior que o ano atual ou menor que 1800.");
                 return View(fabricante);
             }
-            if (!ModelState.IsValid)
-            {
-                return View(fabricante);
-            }
+            
             try
             {
                 await _fabricanteRepository.Create(fabricante);
@@ -43,15 +40,6 @@ namespace NeohConcessionaria.MVC.Controllers
 
             }
         }
-
-        public async Task<IActionResult> Delete(int FabricanteId)
-        {
-            Fabricante fabricante =await _fabricanteRepository.Get(f => f.FabricanteId == FabricanteId);
-            _fabricanteRepository.Delete(fabricante);
-            TempData["MessagemSucesso"] = "Fabricante Excluido Com sucesso!";
-            return RedirectToAction(nameof(List));
-        }
-
         public async Task<IActionResult> List()
         {
             List<Fabricante> Fabricantes = await _fabricanteRepository.GetAll();
@@ -62,5 +50,36 @@ namespace NeohConcessionaria.MVC.Controllers
             return View(fabricanteVm);
         }
 
+        public async Task<IActionResult> Update(int FabricanteId)
+        {
+            Fabricante Fabricante = await _fabricanteRepository.Get(f => f.FabricanteId == FabricanteId);
+            return View(Fabricante);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(Fabricante Fabricante)
+        {
+
+            try
+            {
+                _fabricanteRepository.Update(Fabricante);
+                TempData["MessagemSucesso"] = "Fabricante atualizado Com sucesso!";
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao criar Fabricante: {ex}");
+                TempData["MensagemErro"] = "Ocorreu um erro ao atualizar o Fabricante.  Por favor, tente novamente.";
+                return View(Fabricante);
+
+            }
+        }
+
+        public async Task<IActionResult> Delete(int FabricanteId)
+        {
+            Fabricante fabricante =await _fabricanteRepository.Get(f => f.FabricanteId == FabricanteId);
+            _fabricanteRepository.Delete(fabricante);
+            TempData["MessagemSucesso"] = "Fabricante Excluido Com sucesso!";
+            return RedirectToAction(nameof(List));
+        }
     }
 }
