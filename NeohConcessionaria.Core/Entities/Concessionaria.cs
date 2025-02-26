@@ -44,5 +44,6 @@ namespace NeohConcessionaria.Core.Entities
         [Range(0,int.MaxValue, ErrorMessage = "Capacidade Invalida")]
         public int CapacidadeMaximaVeiculos { get; set; }
 
+        public List<Venda> Vendas { get; set; }
     }
 }

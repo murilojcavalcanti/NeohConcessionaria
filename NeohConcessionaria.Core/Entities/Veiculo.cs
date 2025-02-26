@@ -24,11 +24,14 @@ namespace NeohConcessionaria.Core.Entities
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int FabricanteId { get; set; }
         public Fabricante Fabricante { get; set; }
+
         
         [Required(ErrorMessage = "Campo Obrigatório")]
         public EnumTipoVeiculo TipoVeiculo { get; set; }
 
         public string? Descricao { get; set; }
+
+        public List<Venda> Vendas { get; set; }
 
     }
 }

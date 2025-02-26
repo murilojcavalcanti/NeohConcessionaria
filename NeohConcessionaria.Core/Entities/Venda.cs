@@ -13,13 +13,14 @@ namespace NeohConcessionaria.Core.Entities
         public  int VendaId { get; set; }
         
         public  int VeiculoId { get; set; }
-        public  Veiculo Veiculo { get; set; }
+        public virtual Veiculo Veiculo { get; set; }
         
         public  int ConcessionariaId { get; set; }
-        public Concessionaria Concessionaria { get; set; }
+        public virtual Concessionaria Concessionaria { get; set; }
         
         public  int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
+       
 
         [Required(ErrorMessage = "Campo Obrigatório")]
         public DateTime DataVenda { get; set; }
