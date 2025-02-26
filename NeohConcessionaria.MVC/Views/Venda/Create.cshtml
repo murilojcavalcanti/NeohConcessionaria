@@ -1,0 +1,131 @@
+﻿@using NeohConcessionaria.MVC.Models.VendaModels
+@model VendaInputModel
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function () {
+        $("#FabricanteId").change(function () {
+            var fabricanteId = $(this).val();
+            var veiculoDropdown = $("#VeiculoId");
+
+            veiculoDropdown.empty().append('<option value="">Carregando...</option>');
+
+            if (fabricanteId) {
+                $.ajax({
+                    url: '/Venda/ListVeiculosPorFabricante',
+                    type: 'GET',
+                    data: { fabricanteId: fabricanteId },
+                    dataType: 'json',
+                    success: function (data) {
+                        veiculoDropdown.empty().append('<option value="">Selecione um Veículo</option>');
+                        $.each(data, function (i, veiculo) {
+                            veiculoDropdown.append($('<option>', {
+                                value: veiculo.veiculoId, 
+                                text: veiculo.modelo 
+                            }));
+                        });
+                    },
+                    error: function () {
+                        veiculoDropdown.empty().append('<option value="">Erro ao carregar veículos</option>');
+                    }
+                });
+            } else {
+                veiculoDropdown.empty().append('<option value="">Selecione um Veículo</option>');
+            }
+        });
+    });
+</script>
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="color: black;">
+        @TempData["MensagemErro"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×
+        </button>
+    </div>
+}
+<h3>
+    Cadastre sua venda
+</h3>
+<form asp-action="Create" method="post" class="form-horizontal" role="form">
+    <h6>
+        Dados do cliente
+    </h6>
+    <hr />
+    <div class="row">
+        <div class="form-group col-md-12 d-flex flex-column">
+            <label asp-for="Cliente.Nome" class="control-label"></label>
+            <input asp-for="Cliente.Nome" class="form-control" />
+            <span asp-validation-for="Cliente.Nome" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6 d-flex flex-column">
+            <label asp-for="Cliente.CPF" class="control-label"></label>
+            <input asp-for="Cliente.CPF" class="form-control" />
+            <span asp-validation-for="Cliente.CPF" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6 d-flex flex-column">
+            <label asp-for="Cliente.Telefone" class="control-label"></label>
+            <input asp-for="Cliente.Telefone" class="form-control" />
+            <span asp-validation-for="Cliente" class="text-danger"></span>
+        </div>
+     </div>
+    <br />
+    <h6>
+        Dados da venda
+    </h6>
+    <hr />
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="FabricanteId">Fabricante</label>
+            <select id="FabricanteId" name="FabricanteId" class="form-control">
+                <option value="">Selecione um fabricante</option>
+                @foreach (var fabricante in ViewBag.Fabricantes)
+                {
+                    <option value="@fabricante.FabricanteId">@fabricante.Nome</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="VeiculoId">Veículo</label>
+            <select id="VeiculoId" asp-for="Venda.VeiculoId" name="Venda.VeiculoId" class="form-control">
+                <option value="">Selecione um Veículo</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 d-flex flex-column">
+            <label asp-for="Venda.PrecoVenda" class="control-label"></label>
+            <input asp-for="Venda.PrecoVenda" class="form-control" />
+            <span asp-validation-for="Venda.PrecoVenda" class="text-danger"></span>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="form-group col-md-6 d-flex flex-column">
+            <label asp-for="Venda.DataVenda" class="control-label"></label>
+            <input asp-for="Venda.DataVenda" class="form-control" />
+            <span asp-validation-for="Venda.DataVenda" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Venda.ConcessionariaId" class="control-label">Concessionaria</label>
+            <select asp-for="Venda.ConcessionariaId" asp-items="ViewBag.Concessionarias" class="form-control">
+                <option value="">Selecione uma concessionaria</option>
+            </select>
+            <span asp-validation-for="Venda.ConcessionariaId" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="btn-group">
+            <div>
+                <input class="btn btn-success" type="submit" value="Adicionar Venda" />
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div>
+                <input class="btn btn-outline-info" asp-controller="Home" asp-action="Index" value="Voltar ao inicio" />
+            </div>
+        </div>
+
+    </div>
+</form>

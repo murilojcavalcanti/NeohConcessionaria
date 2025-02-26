@@ -1,0 +1,20 @@
+﻿@model VendaModel
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.FabricanteNome: @Model.VeiculoModelo</h5>
+        <h5 class="card-title">Ano: @Model.AnoFabricacao</h5>
+        <h5 class="card-title">Realizada em: @Model.DataVenda</h5>
+        <p class="card-text">Valor da venda: @Model.PrecoVenda</p>
+        <p class="card-text">Protocolo de venda: @Model.ProtocoloVenda</p>
+        <div class="btn-group">
+            <a onclick="confirmDelete(@Model.VendaId)" class=" btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+<script>
+    function confirmDelete(VendaId) {
+        if (confirm("Tem certeza que deseja excluir esta venda?")) {
+            window.location.href = `/Venda/Delete?VendaId=${VendaId}`;
+        }
+    }
+</script>
