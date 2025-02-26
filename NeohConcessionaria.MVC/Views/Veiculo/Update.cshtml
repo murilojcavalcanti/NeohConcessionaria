@@ -10,10 +10,10 @@
     </div>
 }
 <h3>
-    Cadastre Um Veículo
+    Atualize Uma Concessionária
 </h3>
 <hr />
-<form asp-action="Create" method="post" class="form-horizontal" role="form">
+<form asp-controller="Veiculo" asp-action="Update" method="post" class="form-horizontal" role="form">
     <div class="row">
         <div class="form-group col-md-4">
             <label asp-for="FabricanteId" class="control-label">Fabricante</label>
@@ -49,7 +49,7 @@
             <span asp-validation-for="TipoVeiculo" class="text-danger"></span>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="form-group col-md-12">
             <label asp-for="Descricao" class="control-label"></label>
@@ -57,13 +57,14 @@
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
     </div>
-    
+    </div>
+
     <br />
-    
+
     <div class="row">
         <div class="btn-group">
             <div>
-                <input class="btn btn-success" type="submit" value="Adicionar Veiculo" />
+                <input class="btn btn-success" type="submit" value="Atualizar Concessionaria" />
             </div>
             &nbsp;&nbsp;&nbsp;
             <div>

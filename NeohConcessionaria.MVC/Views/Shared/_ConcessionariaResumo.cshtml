@@ -10,8 +10,7 @@
         <p class="card-text">Estado: @Model.Estado</p>
         <p class="card-text">Capacidade Total de veículos: @Model.CapacidadeMaximaVeiculos</p>
         <div class="btn-group">
-            <a asp-controller="" asp-action="" class=" btn btn-primary ">Ver Vendas</a>
-
+            <a asp-controller="Concessionaria" asp-action="Update" asp-route-ConcessionariaId="@Model.ConcessionariaId" class=" btn btn-primary ">Atualizar</a>
             &nbsp;&nbsp;&nbsp;
             <a onclick="confirmDelete(@Model.ConcessionariaId)" class=" btn btn-danger">Delete</a>
         </div>

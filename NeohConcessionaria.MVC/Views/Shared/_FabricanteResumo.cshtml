@@ -1,14 +1,16 @@
 ﻿@model Fabricante
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
+<div class="card" style="width: 23rem;">
+    <div class="card-body text-center">
         <h5 class="card-title">@Model.Nome</h5>
         <p class="card-text">Criada em: @Model.PaisOrigem</p>
         <p class="card-text">Fundada em: @Model.AnoFundacao</p>
         <div class="btn-group">
-                <a href="@Model.Website" class=" btn btn-primary ">Acesse o site</a>
-            
+                <a asp-controller="Fabricante" asp-action="Update" asp-route-FabricanteId="@Model.FabricanteId" class=" btn btn-primary ">Atualizar Fabricante</a>
             &nbsp;&nbsp;&nbsp;
             <a onclick="confirmDelete(@Model.FabricanteId)" class=" btn btn-danger">Delete</a>
+        </div>
+        <div class="btn card-link col-md-12">
+            <a href="@Model.Website" class=" btn btn-primary ">Acesse o site</a>
         </div>
     </div>
 </div>
