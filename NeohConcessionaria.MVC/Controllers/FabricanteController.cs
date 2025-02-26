@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NeohConcessionaria.Application.Services.FabricanteServices;
 using NeohConcessionaria.Core.Entities;
 using NeohConcessionaria.Infrastructure.Repositories.Fabricantes;
 using NeohConcessionaria.MVC.Models.FabricanteModels;
@@ -8,10 +9,12 @@ namespace NeohConcessionaria.MVC.Controllers
     public class FabricanteController : Controller
     {
         private readonly IFabricanteRepository _fabricanteRepository;
+        private readonly IFabricanteService _fabricanteService;
 
-        public FabricanteController(IFabricanteRepository fabricanteRepository)
+        public FabricanteController(IFabricanteRepository fabricanteRepository, IFabricanteService fabricanteService)
         {
             _fabricanteRepository = fabricanteRepository;
+            _fabricanteService = fabricanteService;
         }
         public IActionResult Create()
         {
@@ -28,7 +31,7 @@ namespace NeohConcessionaria.MVC.Controllers
             
             try
             {
-                await _fabricanteRepository.Create(fabricante);
+                await _fabricanteService.Create(fabricante);
                 TempData["MessagemSucesso"] = "Fabricante Criado Com sucesso!";
                 return RedirectToAction(nameof(List));
             }
@@ -42,7 +45,7 @@ namespace NeohConcessionaria.MVC.Controllers
         }
         public async Task<IActionResult> List()
         {
-            List<Fabricante> Fabricantes = await _fabricanteRepository.GetAll();
+            List<Fabricante> Fabricantes = await _fabricanteService.List();
             FabricanteViewModel fabricanteVm = new()
             {
                 Fabricantes = Fabricantes
@@ -52,7 +55,7 @@ namespace NeohConcessionaria.MVC.Controllers
 
         public async Task<IActionResult> Update(int FabricanteId)
         {
-            Fabricante Fabricante = await _fabricanteRepository.Get(f => f.FabricanteId == FabricanteId);
+            Fabricante Fabricante = await _fabricanteService.Details(FabricanteId);
             return View(Fabricante);
         }
         [HttpPost]
@@ -61,7 +64,7 @@ namespace NeohConcessionaria.MVC.Controllers
 
             try
             {
-                _fabricanteRepository.Update(Fabricante);
+                _fabricanteService.Update(Fabricante);
                 TempData["MessagemSucesso"] = "Fabricante atualizado Com sucesso!";
                 return RedirectToAction("List");
             }
@@ -76,8 +79,7 @@ namespace NeohConcessionaria.MVC.Controllers
 
         public async Task<IActionResult> Delete(int FabricanteId)
         {
-            Fabricante fabricante =await _fabricanteRepository.Get(f => f.FabricanteId == FabricanteId);
-            _fabricanteRepository.Delete(fabricante);
+            _fabricanteService.Delete(FabricanteId);
             TempData["MessagemSucesso"] = "Fabricante Excluido Com sucesso!";
             return RedirectToAction(nameof(List));
         }
