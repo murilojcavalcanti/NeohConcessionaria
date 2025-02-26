@@ -1,14 +1,12 @@
 ﻿using NeohConcessionaria.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace NeohConcessionaria.Infra.Repositories.Veiculos
 {
     public interface IVeiculoRepository : IRepository<Veiculo>
     {
-        List<Veiculo> GetAllDetails();
+        Task<List<Veiculo>> GetAll(); 
+        Task<Veiculo> Get(Expression<Func<Veiculo, bool>> predicate);
+        Task<List<Veiculo>> GetPorFabricante(int FabricanteId);
     }
 }

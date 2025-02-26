@@ -5,6 +5,7 @@ using NeohConcessionaria.Infra.Persistence;
 using NeohConcessionaria.Infra.Repositories;
 using NeohConcessionaria.Infra.Repositories.Concessionarias;
 using NeohConcessionaria.Infra.Repositories.Veiculos;
+using NeohConcessionaria.Infra.Repositories.Vendas;
 using NeohConcessionaria.Infrastructure.Repositories;
 using NeohConcessionaria.Infrastructure.Repositories.Fabricantes;
 
@@ -32,6 +33,8 @@ namespace NeohConcessionaria.Infrastructure
             services.AddScoped<IFabricanteRepository, FabricanteRepository>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             services.AddScoped<IConcessionariaRepository, ConcessionariaRepository>();
+            services.AddScoped<IVendaRepository, VendaRespository>();
+            services.AddScoped<IClienteRepository, ClienteRespository>();
             return services;
         }
     }
