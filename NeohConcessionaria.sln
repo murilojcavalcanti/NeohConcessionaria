@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeohConcessionaria.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeohConcessionaria.Infra", "NeohConcessionaria.Infra\NeohConcessionaria.Infra.csproj", "{735911C6-CA7D-4F01-912E-E41BA1A41265}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeohConcessionaria.Application", "NeohConcessionaria.Application\NeohConcessionaria.Application.csproj", "{32939CBB-E29F-427C-9395-2751DD5C576F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{735911C6-CA7D-4F01-912E-E41BA1A41265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{735911C6-CA7D-4F01-912E-E41BA1A41265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{735911C6-CA7D-4F01-912E-E41BA1A41265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32939CBB-E29F-427C-9395-2751DD5C576F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32939CBB-E29F-427C-9395-2751DD5C576F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32939CBB-E29F-427C-9395-2751DD5C576F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32939CBB-E29F-427C-9395-2751DD5C576F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NeohConcessionaria.Application\NeohConcessionaria.Application.csproj" />
     <ProjectReference Include="..\NeohConcessionaria.Core\NeohConcessionaria.Core.csproj" />
     <ProjectReference Include="..\NeohConcessionaria.Infra\NeohConcessionaria.Infra.csproj" />
   </ItemGroup>
