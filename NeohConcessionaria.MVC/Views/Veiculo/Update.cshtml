@@ -24,13 +24,13 @@
         </div>
 
         <div class="form-group col-md-4 d-flex flex-column">
-            <label asp-for="Modelo" class="control-label"></label>
+            <label asp-for="Modelo" class="control-label">Modelo do veiculo</label>
             <input asp-for="Modelo" class="form-control" />
             <span asp-validation-for="Modelo" class="text-danger"></span>
         </div>
 
         <div class="form-group col-md-4 d-flex flex-column">
-            <label asp-for="AnoFabricacao" class="control-label"></label>
+            <label asp-for="AnoFabricacao" class="control-label"> Ano de fabricação </label>
             <input asp-for="AnoFabricacao" class="form-control" />
             <span asp-validation-for="AnoFabricacao" class="text-danger"></span>
         </div>
@@ -42,7 +42,7 @@
             <span asp-validation-for="Preco" class="text-danger"></span>
         </div>
         <div class="form-group col-md-6">
-            <label asp-for="TipoVeiculo" class="control-label"></label>
+            <label asp-for="TipoVeiculo" class="control-label">Categoria Veículo</label>
             <select asp-for="TipoVeiculo" asp-items="ViewBag.TiposVeiculo" class="form-control">
                 <option value="">Selecione um tipo de veículo</option>
             </select>
@@ -57,14 +57,13 @@
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
     </div>
-    </div>
 
     <br />
 
     <div class="row">
         <div class="btn-group">
             <div>
-                <input class="btn btn-success" type="submit" value="Atualizar Concessionaria" />
+                <input asp-controller="Veiculo" asp-action="Update" asp-route-FabricanteId="@Model.VeiculoId"  class="btn btn-success" type="submit" value="Atualizar Concessionaria" />
             </div>
             &nbsp;&nbsp;&nbsp;
             <div>
